@@ -5,8 +5,7 @@
 			<div class="header__row">
 				<a href="/" class="header__logo">Books Search</a>
 				<div class="header__list">
-					<a href="" class="header__item">GitHub</a>
-					<a href="" class="header__item">Поиск</a>
+					<a href="https://github.com/danil1101/BookSearch" class="header__item">GitHub</a>
 				</div>
 			</div>
 		</div>

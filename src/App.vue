@@ -3,12 +3,11 @@
 		<app-header></app-header>
 		<div class="container-lg cotainer-app">
 			<div class="search-page">
+				<div v-show="!books.length" class="subtitle">Найдите книгу, которая вам нравится.</div>
 				<nav-bar :userInput="input" @changedValue="input = $event" @submitValue="searchBooks"
 					@inputCleared="input = $event">
 				</nav-bar>
-				<div v-show="books.length || textMore" class="book__more">По запросу "{{ input }}" было найдено {{
-					books.length
-				}} книг
+				<div v-show="books.length || textMore" class="book__more">Результаты по запросу "{{ inputSearch }}"...
 				</div>
 				<div class="selects__form">
 					<select v-if="books.length" class="form-select" v-model="selectedItem" name="type"
@@ -18,18 +17,24 @@
 						<option value="books">Книги</option>
 						<option value="magazines">Журналы</option>
 					</select>
+					<select v-if="books.length" class="form-select" v-model="selectedSort" name="cort" @change="updateSort">
+						<option value="relevance" disabled hidden selected>Сортировка</option>
+						<option value="relevance">По релевантности</option>
+						<option value="newest">От новых к старым</option>
+						<!-- В следующем примере результаты перечислены по дате публикации, от новых к старым: -->
+					</select>
 					<select v-if="books.length" class="form-select" v-model="selectedFilter" name="filter"
 						@change="updateFilter">
-						<option value="relevance" disabled hidden selected>Сортировка</option>
-						<option value="relevance">По умолчанию</option>
-						<option value="newest">Недавно добавленные</option>
+						<option value="partial" disabled hidden selected>Фильтрация</option>
+						<option value="partial">По умолчанию</option>
+						<option value="free-ebooks">Полный обзор</option>
+						<option value="ebooks">Элекронные книги</option>
 					</select>
 				</div>
 				<book-results :input="input" :books="books"></book-results>
 			</div>
 			<main></main>
 		</div>
-		<!-- <app-footer></app-footer> -->
 	</div>
 </template>
 
@@ -37,10 +42,9 @@
 import NavBar from '@/components/NavBar'
 import BookResults from '@/components/BookResults'
 import AppHeader from '@/components/AppHeader.vue'
-import AppFooter from '@/components/AppFooter.vue'
 export default {
 	components: {
-		AppHeader, AppFooter, NavBar, BookResults
+		AppHeader, NavBar, BookResults
 	},
 	props: ['userInput'],
 	data: function () {
@@ -50,9 +54,11 @@ export default {
 			loading: false,
 			isTyping: false,
 			title: '',
+			inputSearch: '',
 			textMore: false,
 			selectedItem: 'all',
-			selectedFilter: 'relevance',
+			selectedFilter: 'partial',
+			selectedSort: 'relevance',
 		}
 	},
 	watch: {
@@ -69,6 +75,10 @@ export default {
 			this.selectedItem = event.target.value
 			this.searchBooks()
 		},
+		updateSort(event) {
+			this.selectedSort = event.target.value
+			this.searchBooks()
+		},
 		updateFilter(event) {
 			this.selectedFilter = event.target.value
 			this.searchBooks()
@@ -76,16 +86,18 @@ export default {
 		searchBooks(event) {
 			this.loading = true
 			let search = this.input;
-			let queryURL = 'https://www.googleapis.com/books/v1/volumes?q=' + search + '&maxResults=40&printType=' + this.selectedItem + '&orderBy=' + this.selectedFilter;
+			let queryURL = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40&filter=${this.selectedFilter}&printType=${this.selectedItem}&orderBy=${this.selectedSort}`;
+			//console.log(queryURL)
 			this.$http.get(queryURL).then((data) => {
 				this.books = data.body.items;
+				this.inputSearch = this.input;
 			})
 				.then(() => {
 					let elems = document.querySelectorAll('.carousel');
 					let instances = M.Carousel.init(elems);
 					this.loading = false
 					this.results = true
-					console.log(this.results)
+
 				})
 				.catch((error) => {
 					this.loading = false
@@ -94,16 +106,24 @@ export default {
 						html: 'Oops! Something went wrong!'
 					});
 				});
-			this.textMore = true;
+
 		}
 	}
 }
 </script>
 
 <style lang="scss">
+.subtitle {
+	text-align: center;
+	font-size: 35px;
+	margin-bottom: 40px;
+	color: #fff;
+}
+
 body {
 	background: #f4f4f4;
 	min-height: 100vh;
+	overflow-y: auto;
 }
 
 main {
@@ -111,23 +131,19 @@ main {
 }
 
 .book__more {
-	/* .darkmode--activated & {
-		color: #000;
-	} */
-
-	@media (max-width: 430px) {
-		font-size: 16px;
-		margin: 5px auto;
-	}
 
 	margin-bottom: 40px;
 	overflow: hidden;
 	transition: color 0.3s ease 0s;
 	text-align: center;
 	margin: 10px auto;
-	font-size: 18px;
+	font-size: 20px;
 
-	color: rgb(112, 112, 112);
+	@media (max-width: 430px) {
+		font-size: 18px;
+	}
+
+	color: rgb(155, 154, 154);
 }
 
 
@@ -155,7 +171,7 @@ a {
 }
 
 .search-page {
-	margin: 120px auto 0 auto;
+	margin: 120px 0;
 	min-width: 500px;
 
 	@media (max-width: 500px) {
@@ -172,8 +188,37 @@ a {
 	margin-top: 10px;
 	gap: 15px;
 
+
+
+	select:focus {
+		box-shadow: 0 0 5px 0.1rem rgba(207, 198, 173, 0.6);
+		border-color: rgba(207, 198, 173, 0.6);
+	}
+
 	@media (max-width: 430px) {
 		flex-wrap: wrap;
 	}
+}
+
+
+body::-webkit-scrollbar {
+	width: 8px;
+	background: #313131;
+}
+
+body::-webkit-scrollbar-track {
+	background: #313131;
+	margin-top: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #7e7c7c;
+
+	&:hover {
+		background-color: #adabab;
+	}
+
+	border-radius: 20px;
+	border: 2px solid #313131;
 }
 </style>

@@ -69,12 +69,12 @@ nav input {
 }
 
 .form-control {
-	/* .darkmode--activated & {
-		&:focus {
-			box-shadow: 0 0 0 0.25rem rgba(236, 178, 19, 0.4);
-			border-color: rgba(236, 178, 19, 0.4);
-		}
-	} */
+
+	&:focus {
+		box-shadow: 0 0 5px 0.1rem rgba(207, 198, 173, 0.6);
+		border-color: rgba(207, 198, 173, 0.6);
+	}
+
 }
 
 input {

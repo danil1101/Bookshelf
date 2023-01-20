@@ -3,7 +3,8 @@
 		<div class="cards">
 			<div class="cards__item card" v-for="book in books" :key="book.id" :id="book.id">
 				<div class="cards__image">
-					<img v-if="book.volumeInfo.imageLinks" :src="book.volumeInfo.imageLinks.thumbnail" class="activator" />
+					<img v-if="book.volumeInfo.imageLinks" :src="book.volumeInfo.imageLinks.thumbnail + '&zoom=1'"
+						class="activator" />
 					<img v-else src="@/assets/img/no-img.png" />
 				</div>
 				<div class="cards__content">
@@ -14,9 +15,10 @@
 						book.volumeInfo.authors[0]
 					}}
 					</p>
-					<p style="flex: 1 1 auto;" v-if="book.volumeInfo.publishedDate"><span class="font-weight-bold">Дата
+					<p v-if="book.volumeInfo.publishedDate"><span class="font-weight-bold">Дата
 							публикации: <br> </span> {{ book.volumeInfo.publishedDate.replace(/\-/g, '.') }}
 					</p>
+					<p style="flex: 1 1 auto;"></p>
 					<!-- <div style="flex: 1 1 auto;" class="book__desc">
 						<p v-if="book.searchInfo">{{
 							book.searchInfo.textSnippet.replace(/<(.|\n)*?>/g, '').replace(/[&]nbsp[;]/gi,
@@ -79,12 +81,13 @@ export default {
 .btn-primary {
 	margin-top: 5px;
 	font-size: 14px;
-	padding: 5px 8px;
+	padding: 8px;
 	cursor: pointer;
+	width: 180px;
 	background-color: #1d1c1c;
 	border-color: transparent;
 	transition: background-color 0.3s ease 0s;
-
+	color: #fff;
 	/* .darkmode--activated & {
 		background-color: rgb(128, 25, 25);
 
@@ -117,6 +120,7 @@ export default {
 	}
 
 	grid-gap: 10px;
+	grid-row-gap: 15px;
 	margin: 0 auto;
 
 	&__item {
@@ -133,7 +137,7 @@ export default {
 	}
 
 	&__image {
-		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
 		max-width: 150px;
 		max-height: 245px;
 		min-width: 140px;
@@ -144,6 +148,7 @@ export default {
 		}
 
 		img {
+			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 			width: 100%;
 			height: 100%;
 			object-fit: cover;

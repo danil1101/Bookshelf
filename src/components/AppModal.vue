@@ -27,11 +27,7 @@ export default {
 			</header>
 			<section class="modal-body" id="modalDescription">
 				<slot name="body">
-					<div class="modal-body__image">
-						<img v-if="book.volumeInfo.imageLinks" :src="book.volumeInfo.imageLinks.thumbnail"
-							class="activator" />
-						<img v-else src="../assets/img/no-img.png" />
-					</div>
+
 					<div class="modal-body__content">
 						<p v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
 							book.volumeInfo.title
@@ -53,16 +49,18 @@ export default {
 								book.volumeInfo.description
 							}}
 						</p>
-						<p>
-							<span class="font-weight-bold">Количество страниц: </span>
-							<span v-if="book.volumeInfo.pageCount">{{ book.volumeInfo.pageCount }}</span>
-							<span class="not-found" v-else>Неизвестно</span>
-						</p>
+						<p style="flex: 1 1 auto;"></p>
 						<div class="modal-body__btn">
-							<a :href="book.accessInfo.webReaderLink" class="btn btn-primary-modal" target="_blank">Прочитать
-								отрывок из книги</a>
-							<a :href="book.saleInfo.buyLink" class="btn btn-primary" target="_blank">Купить эту книгу</a>
+							<a :href="book.accessInfo.webReaderLink" class="btn btn-primary-modal" target="_blank">Читать
+								книгу</a>
+							<a :href="book.saleInfo.buyLink" class="btn btn-primary-modal" target="_blank">Купить книгу</a>
 						</div>
+					</div>
+					<div class="modal-body__image">
+						<img v-if="book.volumeInfo.imageLinks" :src="book.volumeInfo.imageLinks.thumbnail"
+							class="activator" />
+						<img v-else src="../assets/img/no-img.png" />
+						<span v-if="book.volumeInfo.pageCount">{{ book.volumeInfo.pageCount }} страниц</span>
 					</div>
 				</slot>
 			</section>
@@ -74,44 +72,74 @@ export default {
 	font-style: italic;
 }
 
-.modal-body {
-	color: #333131;
+.modal {
+	border-radius: 0.375rem;
 
+}
+
+.modal-body {
+
+	display: flex;
+	height: 100%;
+	padding-top: 0 !important;
+	color: #333131;
+	justify-content: center;
+
+
+	@media (max-width:440px) {
+		flex-wrap: wrap;
+	}
 
 	p {
 		margin-bottom: 7px;
 		line-height: 1.7;
 	}
-}
-
-.modal-body {
-	display: flex;
-	height: 100%;
-	padding-top: 0 !important;
-
 
 	&__btn {
 		margin-top: 10px;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 10px;
-		padding-bottom: 30px;
 	}
 
 	&__image {
-		flex: 0 1 40%;
+		padding-left: 30px;
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		text-align: center;
 
+		@media (max-width:440px) {
+			padding-left: 0;
+			order: 1;
+			padding-bottom: 10px;
+		}
 
 		img {
+			box-shadow: 0px 1px 5px #000;
 			width: 100%;
-			max-width: 220px;
+			min-width: 200px;
+			max-width: 300px;
+
+			@media (max-width:768px) {
+				min-width: 150px;
+				max-width: 200px;
+			}
+
 			height: auto;
 		}
 	}
 
 	&__content {
+		@media (max-width:440px) {
+			flex: 1 1 auto;
+			order: 2;
+		}
+
 		flex: 0 1 60%;
 		font-size: 16px;
+		display: flex;
+		flex-direction: column;
 	}
 }
 
@@ -123,9 +151,6 @@ export default {
 	color: #1d1c1c;
 	transition: color 0.3s ease 0s;
 
-	/* .darkmode--activated & {
-		color: rgb(128, 25, 25);
-	} */
 }
 
 .font-weight-bold {
@@ -135,39 +160,77 @@ export default {
 .btn-primary-modal {
 	font-size: 16px !important;
 	font-weight: 500;
-	padding: 10px !important;
+	padding: 8px !important;
 	cursor: pointer;
 	background-color: #1d1c1c;
 	border-color: #1d1c1c;
 	transition: background-color 0.3s ease 0s;
-
-	/* .darkmode--activated & {
-		background-color: rgb(128, 25, 25);
-
-		&:hover,
-		&:active {
-			background-color: rgb(161, 39, 39);
-			border-color: transparent;
-		}
-	} */
+	color: #fff;
+	width: 100%;
+	max-width: 200px;
 
 	&:hover,
 	&:active {
+		color: #fff;
 		background-color: #363535 !important;
 		border-color: #363535 !important;
 	}
 }
 
 .modal-backdrop {
-	display: flex;
+
 	position: fixed;
 	right: 0;
 	left: 0;
 	top: 0;
 	bottom: 0;
-	overflow: hidden;
+	overflow: auto;
 	align-items: center;
 	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-backdrop::-webkit-scrollbar {
+	width: 8px;
+	opacity: 0.6;
+}
+
+.modal-backdrop::-webkit-scrollbar-track {
+	background: #313131;
+	opacity: 0.6;
+}
+
+.modal-backdrop::-webkit-scrollbar-thumb {
+	background-color: #7e7c7c;
+	opacity: 0.6;
+
+	&:hover {
+		background-color: #adabab;
+	}
+
+	border-radius: 20px;
+	border: 2px solid #313131;
+}
+
+.modal::-webkit-scrollbar {
+	width: 8px;
+
+}
+
+.modal::-webkit-scrollbar-track {
+	background: #fff;
+	margin-top: 10px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+	background-color: #7e7c7c;
+	height: 50px;
+
+	&:hover {
+		background-color: #adabab;
+	}
+
+	border-radius: 20px;
+	border: 2px solid #fff;
 }
 
 html.open-modal {
@@ -177,14 +240,22 @@ html.open-modal {
 }
 
 .modal {
+	@media (max-width: 475px) {
+		top: 0;
+		margin: auto;
+
+	}
+
+	padding-bottom:15px;
 	position: relative;
 	width: 100%;
-	max-width: 700px;
-	margin: 30px auto;
+	max-width: 900px;
+	margin: 50px auto;
 	background: #FFFFFF;
-	max-height: 500px;
-	height: 100%;
+	max-height: 800px;
+	height: auto;
 	display: flex;
+
 	flex-direction: column;
 }
 
@@ -214,11 +285,12 @@ html.open-modal {
 
 .btn-close {
 	font-size: 20px;
-	margin: 5px 5px !important;
+	margin: 7px !important;
 	margin-left: auto !important;
 
 	&:focus,
 	&:active {
+		box-shadow: none;
 		outline: none;
 		border: none;
 	}
