@@ -273,7 +273,7 @@ html.open-modal {
 	padding-bottom:15px;
 	position: relative;
 	width: 100%;
-	max-width: 900px;
+	max-width: 820px;
 	margin: 50px auto;
 	background: #FFFFFF;
 	max-height: 800px;
@@ -309,7 +309,7 @@ html.open-modal {
 
 .btn-close {
 	font-size: 20px;
-	margin: 7px !important;
+	margin: 3px !important;
 	margin-left: auto !important;
 
 	&:focus,

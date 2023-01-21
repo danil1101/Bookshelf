@@ -32,6 +32,28 @@
 					</select>
 				</div>
 				<book-results :input="input" :books="books"></book-results>
+				<div class="count-pages" v-if="books.length">
+					<ul class="pagging__list">
+						<li>
+							<span @click="this.changePage" class="pagging__item  item_1">1</span>
+						</li>
+						<li>
+							<span @click="this.changePage" class="pagging__item item_2">2</span>
+						</li>
+						<li>
+							<span @click="this.changePage" class="pagging__item item_3">3</span>
+						</li>
+						<li>
+							<span @click="this.changePage" class="pagging__item item_4">4</span>
+						</li>
+						<li>
+							<span @click="this.changePage" class="pagging__item item_5">5</span>
+						</li>
+						<li>
+							<span @click="this.changePage" class="pagging__item item_all">След</span>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<main></main>
 		</div>
@@ -56,6 +78,7 @@ export default {
 			title: '',
 			inputSearch: '',
 			textMore: false,
+			countPage: '0',
 			selectedItem: 'all',
 			selectedFilter: 'partial',
 			selectedSort: 'relevance',
@@ -71,6 +94,43 @@ export default {
 		}
 	},
 	methods: {
+		isClassPageActive() {
+			const activePages = document.querySelectorAll('.page_active')
+			if (activePages) {
+				for (let activePage of activePages) {
+					activePage.classList.remove('page_active')
+				}
+			}
+			window.scrollTo(0, -200)
+		},
+		changePage(event) {
+			if (event.target.closest('.item_1')) {
+				this.countPage = 0;
+				this.isClassPageActive()
+				event.target.classList.add('page_active')
+			} else if (event.target.closest('.item_2')) {
+				this.countPage = 41;
+				this.isClassPageActive()
+				event.target.classList.add('page_active')
+			} else if (event.target.closest('.item_3')) {
+				this.countPage = 81;
+				this.isClassPageActive()
+				event.target.classList.add('page_active')
+			} else if (event.target.closest('.item_4')) {
+				this.countPage = 121;
+				this.isClassPageActive()
+				event.target.classList.add('page_active')
+			} else if (event.target.closest('.item_5')) {
+				this.countPage = 141;
+				this.isClassPageActive()
+				event.target.classList.add('page_active')
+			} else if (event.target.closest('.item_all')) {
+				this.countPage += 41;
+				this.isClassPageActive()
+				event.target.classList.add('page_active')
+			}
+			this.searchBooks();
+		},
 		updateOption(event) {
 			this.selectedItem = event.target.value
 			this.searchBooks()
@@ -86,8 +146,8 @@ export default {
 		searchBooks(event) {
 			this.loading = true
 			let search = this.input;
-			let queryURL = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40&filter=${this.selectedFilter}&printType=${this.selectedItem}&orderBy=${this.selectedSort}`;
-			//console.log(queryURL)
+			let queryURL = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40&startIndex=${this.countPage}&filter=${this.selectedFilter}&printType=${this.selectedItem}&orderBy=${this.selectedSort}`;
+			console.log(queryURL)
 			this.$http.get(queryURL).then((data) => {
 				this.books = data.body.items;
 				this.inputSearch = this.input;
@@ -121,9 +181,13 @@ export default {
 }
 
 body {
-	background: #f4f4f4;
+	background-color: #121212;
 	min-height: 100vh;
 	overflow-y: auto;
+}
+
+html {
+	background-color: #121212;
 }
 
 main {
@@ -171,7 +235,7 @@ a {
 }
 
 .search-page {
-	margin: 120px 0;
+	margin: 120px 0 40px 0;
 	min-width: 500px;
 
 	@media (max-width: 500px) {
@@ -208,7 +272,7 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-track {
 	background: #313131;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -220,5 +284,38 @@ body::-webkit-scrollbar-thumb {
 
 	border-radius: 20px;
 	border: 2px solid #313131;
+}
+
+.count-pages {}
+
+ul {
+	list-style: none;
+}
+
+ul,
+li {
+	margin: 0;
+	padding: 0;
+}
+
+.pagging {
+
+
+	&__list {
+		display: flex;
+		gap: 15px;
+		justify-content: center;
+	}
+
+	&__item {
+		cursor: pointer;
+		outline: 1px solid #f4f4f4;
+		padding: 5px 10px;
+	}
+}
+
+
+.page_active {
+	outline: 1px solid #da2525;
 }
 </style>

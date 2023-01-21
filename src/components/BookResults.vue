@@ -20,17 +20,6 @@
 							публикации: <br> </span> {{ book.volumeInfo.publishedDate.replace(/\-/g, '.') }}
 					</p>
 					<p style="flex: 1 1 auto;"></p>
-					<!-- <div style="flex: 1 1 auto;" class="book__desc">
-						<p v-if="book.searchInfo">{{
-							book.searchInfo.textSnippet.replace(/<(.|\n)*?>/g, '').replace(/[&]nbsp[;]/gi,
-								"").replace(/[&]*[;]/gi, " ").replace(/[&]quot/gi, " ")
-						}}
-						</p>
-						<p v-else>
-							{{ book.volumeInfo.subtitle }}
-						</p>
-					</div> -->
-
 					<button class="card__more font-weight-bold btn btn-primary" @click="showModal(book.id)">
 						Подробнее
 					</button>
@@ -74,7 +63,7 @@ export default {
 </script>
 <style lang="scss" >
 .book-results {
-	margin-top: 15px;
+	margin: 20px 0 40px 0;
 }
 
 

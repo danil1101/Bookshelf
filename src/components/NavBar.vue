@@ -51,7 +51,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .material-icons {
-	color: #fff;
+	color: #fff !important;
 }
 
 .navbar {
