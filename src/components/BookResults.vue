@@ -9,7 +9,7 @@
 				</div>
 				<div class="cards__content">
 					<p @click="showModal(book.id)" v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
-						book.volumeInfo.title.length > 75 ? book.volumeInfo.title.slice(0, 75).trim() + "..." :
+						book.volumeInfo.title.length > 70 ? book.volumeInfo.title.slice(0, 70).trim() + "..." :
 							book.volumeInfo.title
 					}}</p>
 					<p v-if="book.volumeInfo.authors"><span class="font-weight-bold">Автор</span>: {{
