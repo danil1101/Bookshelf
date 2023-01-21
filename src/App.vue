@@ -35,7 +35,7 @@
 				<div class="count-pages" v-if="books.length">
 					<ul class="pagging__list">
 						<li>
-							<span @click="this.changePage" class="pagging__item  item_1">1</span>
+							<span @click="this.changePage" class="pagging__item item_1 page_active">1</span>
 						</li>
 						<li>
 							<span @click="this.changePage" class="pagging__item item_2">2</span>
