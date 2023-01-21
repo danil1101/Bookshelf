@@ -50,6 +50,9 @@ input[type="search"]::-webkit-search-results-decoration {
 	display: none;
 }
 
+.material-icons {
+	color: #fff;
+}
 
 .navbar {
 	justify-content: center;
