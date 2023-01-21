@@ -8,8 +8,9 @@
 					<img v-else src="../assets/img/no-img.png" />
 				</div>
 				<div class="cards__content">
-					<p v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
-						book.volumeInfo.title
+					<p @click="showModal(book.id)" v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
+						book.volumeInfo.title.length > 75 ? book.volumeInfo.title.slice(0, 75).trim() + "..." :
+							book.volumeInfo.title
 					}}</p>
 					<p v-if="book.volumeInfo.authors"><span class="font-weight-bold">Автор</span>: {{
 						book.volumeInfo.authors[0]
@@ -30,7 +31,7 @@
 						</p>
 					</div> -->
 
-					<button class="card__more font-weight-bold btn btn-primary" @click.stop="showModal(book.id)">
+					<button class="card__more font-weight-bold btn btn-primary" @click="showModal(book.id)">
 						Подробнее
 					</button>
 					<modal :ref="'modal_id_' + book.id" @close="closeModal" :book="book" />
@@ -62,7 +63,6 @@ export default {
 			if (modal) {
 				modal[0].show()
 			}
-
 			document.documentElement.classList.add('open-modal')
 		},
 		closeModal() {
@@ -88,17 +88,9 @@ export default {
 	border-color: transparent;
 	transition: background-color 0.3s ease 0s;
 	color: #fff;
-	/* .darkmode--activated & {
-		background-color: rgb(128, 25, 25);
-
-		&:hover,
-		&:active {
-			background-color: rgb(161, 39, 39);
-			border-color: transparent;
-		}
-	} */
 
 	&:hover,
+	&:focus,
 	&:active {
 		background-color: #363535 !important;
 		border-color: #363535 !important;
@@ -172,7 +164,9 @@ export default {
 		}
 	}
 
-	&__title {}
+	&__title {
+		cursor: pointer;
+	}
 
 	&__action {}
 
@@ -186,13 +180,12 @@ export default {
 .cards__title {
 	font-size: 16px;
 	font-weight: 700;
-	line-height: 1.3;
+	line-height: 1.2;
 	color: #1d1c1c;
-	transition: color 0.3s ease 0s;
+	transition: color 0.1s ease 0s;
 
-	/* .darkmode--activated & {
-		color: rgb(128, 25, 25);
-	} */
-
+	&:hover {
+		color: #3d3c3c;
+	}
 }
 </style>

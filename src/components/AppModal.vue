@@ -15,6 +15,21 @@ export default {
 			this.$emit('close')
 			this.isVisible = false
 		},
+		getNoun(number, one, two, five) {
+			let n = Math.abs(number);
+			n %= 100;
+			if (n >= 5 && n <= 20) {
+				return five;
+			}
+			n %= 10;
+			if (n === 1) {
+				return one;
+			}
+			if (n >= 2 && n <= 4) {
+				return two;
+			}
+			return five;
+		}
 	},
 };
 </script>
@@ -60,7 +75,16 @@ export default {
 						<img v-if="book.volumeInfo.imageLinks" :src="book.volumeInfo.imageLinks.thumbnail"
 							class="activator" />
 						<img v-else src="../assets/img/no-img.png" />
-						<span v-if="book.volumeInfo.pageCount">{{ book.volumeInfo.pageCount }} страниц</span>
+						<p>
+							<span v-if="book.volumeInfo.pageCount">
+								{{
+	book.volumeInfo.pageCount + ' ' + getNoun(book.volumeInfo.pageCount, 'страница', 'страницы',
+		'страниц')
+								}}
+
+							</span>
+							<span v-else style="font-style:italic">Количество страниц неизвестно</span>
+						</p>
 					</div>
 				</slot>
 			</section>
@@ -236,7 +260,7 @@ export default {
 html.open-modal {
 	position: fixed;
 	min-width: 100%;
-
+	overflow: hidden;
 }
 
 .modal {
