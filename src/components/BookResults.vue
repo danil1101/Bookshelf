@@ -5,7 +5,7 @@
 				<div class="cards__image">
 					<img v-if="book.volumeInfo.imageLinks" :src="book.volumeInfo.imageLinks.thumbnail + '&zoom=1'"
 						class="activator" />
-					<img v-else src="@/assets/img/no-img.png" />
+					<img v-else src="./assets/img/no-img.png" />
 				</div>
 				<div class="cards__content">
 					<p v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
