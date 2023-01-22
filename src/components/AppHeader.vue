@@ -3,9 +3,9 @@
 	<div class="header">
 		<div class="container-lg">
 			<div class="header__row">
-				<a href="/index.html" class="header__logo">Books Search</a>
+				<a href="https://danil1101.github.io/BookSearch/" class="header__logo">Books Search</a>
 				<div class="header__list">
-					<a href="https://github.com/danil1101/BookSearch" class="header__item">GitHub</a>
+					<a href="https://github.com/danil1101/BookSearch" target="_blank" class="header__item">GitHub</a>
 				</div>
 			</div>
 		</div>
