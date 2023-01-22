@@ -8,18 +8,18 @@
 					<img v-else src="../assets/img/no-img.png" />
 				</div>
 				<div class="cards__content">
-					<p @click="showModal(book.id)" v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
-						book.volumeInfo.title.length > 70 ? book.volumeInfo.title.slice(0, 70).trim() + "..." :
+					<div @click="showModal(book.id)" v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
+						book.volumeInfo.title.length > 60 ? book.volumeInfo.title.slice(0, 60).trim() + "..." :
 							book.volumeInfo.title
-					}}</p>
+					}}</div>
 					<p v-if="book.volumeInfo.authors"><span class="font-weight-bold">Автор</span>: {{
 						book.volumeInfo.authors[0]
 					}}
 					</p>
 					<p v-if="book.volumeInfo.publishedDate"><span class="font-weight-bold">Дата
-							публикации: <br> </span> {{ book.volumeInfo.publishedDate.replace(/\-/g, '.') }}
+							публикации: </span> {{ book.volumeInfo.publishedDate.replace(/\-/g, '.') }}
 					</p>
-					<p style="flex: 1 1 auto;"></p>
+					<div style="flex: 1 1 auto;"></div>
 					<button class="card__more font-weight-bold btn btn-primary" @click="showModal(book.id)">
 						Подробнее
 					</button>
@@ -62,70 +62,73 @@ export default {
 }
 </script>
 <style lang="scss" >
-.book-results {
-	margin: 20px 0 40px 0;
-}
-
-
 .btn-primary {
-	margin-top: 5px;
-	font-size: 14px;
+	font-weight: 700;
+	line-height: 22px;
+	text-align: center;
 	padding: 8px;
 	cursor: pointer;
-	width: 180px;
-	background-color: #1d1c1c;
+	width: 200px;
+	background: #F1A041;
+	border-radius: 6px;
 	border-color: transparent;
-	transition: background-color 0.3s ease 0s;
+	transition: background-color 0.2s ease 0s;
 	color: #fff;
 
 	&:hover,
 	&:focus,
 	&:active {
-		background-color: #363535 !important;
-		border-color: #363535 !important;
+		background: #FA8F13 !important;
+		border-color: #FA8F13 !important;
 	}
 }
 
 
+.card {
+	background: #282828;
+	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+	border-radius: 6px;
+}
 
 .cards {
+	position: relative;
+	z-index: 10;
 	display: grid;
-	grid-template-columns: repeat(3, minmax(200px, 0.5fr));
+	grid-template-columns: repeat(2, minmax(200px, 0.5fr));
 
-	@media (max-width: 1200px) {
-		grid-template-columns: repeat(2, minmax(200px, 0.5fr));
-	}
 
 	@media (max-width: 738px) {
 		grid-template-columns: repeat(1, minmax(150px, 1fr));
 	}
 
-	grid-gap: 10px;
-	grid-row-gap: 15px;
+	grid-gap: 30px;
 	margin: 0 auto;
 
 	&__item {
-		border-radius: 0.375rem;
 		flex: 0 1 33.333%;
 		flex-direction: row;
 
 		@media (max-width: 430px) {
 			flex-wrap: wrap;
+			padding: 20px;
 		}
 
 		display: flex;
-		padding: 10px;
+		padding-top: 33px;
+		padding-bottom: 33px;
+		padding-left: 20px;
 	}
 
 	&__image {
 
-		max-width: 150px;
-		max-height: 245px;
-		min-width: 140px;
+		max-width: 140px;
+		max-width: 165px;
+		min-width: 120px;
+		height: auto;
 
 		@media (max-width: 430px) {
-			margin: 0 auto;
 			padding-bottom: 10px;
+			margin: 0 auto;
 		}
 
 		img {
@@ -137,19 +140,27 @@ export default {
 	}
 
 	&__content {
+
 		@media (max-width: 430px) {
 			min-width: 100%;
+			padding: 0;
+			margin: 0 auto;
 		}
 
 		position: relative;
-		padding-left: 10px;
-		color: #333131;
+		padding: 0 20px;
+		color: #fff;
 		font-size: 14px;
+
 		display: flex;
 		flex-direction: column;
 
 		p {
-			margin-bottom: 5px;
+			line-height: 1.3;
+		}
+
+		p:not(:last-child) {
+			margin-bottom: 10px;
 		}
 	}
 
@@ -157,9 +168,6 @@ export default {
 		cursor: pointer;
 	}
 
-	&__action {}
-
-	&__reveal {}
 }
 
 .font-weight-bold {
@@ -167,14 +175,14 @@ export default {
 }
 
 .cards__title {
-	font-size: 16px;
 	font-weight: 700;
-	line-height: 1.2;
-	color: #1d1c1c;
-	transition: color 0.1s ease 0s;
+	font-size: 20px;
+	line-height: 24px;
+	color: #fff;
+	margin-bottom: 15px;
 
 	&:hover {
-		color: #3d3c3c;
+		color: rgb(224, 224, 224);
 	}
 }
 </style>

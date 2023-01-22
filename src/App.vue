@@ -2,12 +2,18 @@
 	<div class="app">
 		<app-header></app-header>
 		<div class="container-lg cotainer-app">
+			<div class="main-image">
+				<img src="./assets/img/main-books.jpg" alt="">
+			</div>
 			<div class="search-page">
-				<div v-show="!books.length" class="subtitle">Найдите книгу, которая вам нравится.</div>
+
 				<nav-bar :userInput="input" @changedValue="input = $event" @submitValue="searchBooks"
 					@inputCleared="input = $event">
 				</nav-bar>
-				<div v-show="books.length || textMore" class="book__more">Результаты по запросу "{{ inputSearch }}"...
+				<div v-show="books.length || textMore" class="book__more">
+					<span>Результаты по запросу "{{ inputSearch }}"
+					</span>
+					<span>Найдено: {{ books.length }}</span>
 				</div>
 				<div class="selects__form">
 					<select v-if="books.length" class="form-select" v-model="selectedItem" name="type"
@@ -173,17 +179,12 @@ export default {
 </script>
 
 <style lang="scss">
-.subtitle {
-	text-align: center;
-	font-size: 35px;
-	margin-bottom: 40px;
-	color: #fff;
-}
-
 body {
 	background-color: #121212;
 	min-height: 100vh;
 	overflow-y: auto;
+	font-family: Inter, sans-serif;
+	font-weight: 400;
 }
 
 html {
@@ -194,20 +195,34 @@ main {
 	flex: 1 1 auto;
 }
 
+.main-image {
+
+
+	img {
+		max-height: 227px;
+		display: block;
+		width: 100%;
+		height: 100vh;
+		object-fit: cover;
+	}
+}
+
 .book__more {
-
-	margin-bottom: 40px;
-	overflow: hidden;
-	transition: color 0.3s ease 0s;
-	text-align: center;
-	margin: 10px auto;
-	font-size: 20px;
-
-	@media (max-width: 430px) {
+	span:first-child {
 		font-size: 18px;
+		color: #9A9A9A;
+		margin-bottom: 10px;
+		display: block;
 	}
 
-	color: rgb(155, 154, 154);
+	span:last-child {
+		font-size: 16px;
+		color: #FFFFFF;
+	}
+
+	line-height: 18px;
+	margin-top: 30px;
+	margin-bottom: 16px;
 }
 
 
@@ -218,11 +233,29 @@ main {
 }
 
 .app {
+
 	background-color: #121212;
 	min-height: 100vh;
 	position: relative;
-	color: #f4f4f4;
+	color: #fff;
 
+
+	&::after {
+		content: '';
+		width: 250px;
+		height: 250px;
+		position: absolute;
+		display: block;
+		bottom: 10px;
+		z-index: 1;
+		right: 0;
+		background: url('./assets/img/main-book.png') 0 0 / cover no-repeat;
+
+		@media (max-width:425px) {
+			width: 150px;
+			height: 150px;
+		}
+	}
 }
 
 a {
@@ -235,8 +268,8 @@ a {
 }
 
 .search-page {
-	margin: 120px 0 40px 0;
-	min-width: 500px;
+	margin: 30px 0 100px 0;
+	min-width: 765px;
 
 	@media (max-width: 500px) {
 		min-width: 100%;
@@ -249,10 +282,24 @@ a {
 
 .selects__form {
 	display: flex;
-	margin-top: 10px;
-	gap: 15px;
+	gap: 20px;
+	margin-bottom: 50px;
 
+	select {
+		font-size: 16px;
+		line-height: 18px;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 15px;
+		color: #454545;
+		min-width: 185px;
 
+		@media (max-width:758px) {
+			min-width: 130px;
+		}
+
+		border-radius: 3px !important;
+	}
 
 	select:focus {
 		box-shadow: 0 0 5px 0.1rem rgba(207, 198, 173, 0.6);
@@ -286,11 +333,16 @@ body::-webkit-scrollbar-thumb {
 	border: 2px solid #313131;
 }
 
-.count-pages {}
+.count-pages {
+	margin-top: 60px;
+
+}
 
 ul {
 	list-style: none;
 }
+
+body {}
 
 ul,
 li {
@@ -299,23 +351,35 @@ li {
 }
 
 .pagging {
-
-
 	&__list {
 		display: flex;
-		gap: 15px;
-		justify-content: center;
+		gap: 10px;
 	}
 
 	&__item {
+		width: 50px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		cursor: pointer;
-		outline: 1px solid #f4f4f4;
-		padding: 5px 10px;
+		background: rgba(255, 255, 255, 0.15);
+		border-radius: 6px;
+		transition: background 0.2s ease 0s;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.25);
+		}
 	}
 }
 
+.item_all {
+	width: 75px;
+}
 
 .page_active {
-	outline: 1px solid #da2525;
+	border: 1px solid #F1A041;
+	background: none !important;
+	border-radius: 6px;
 }
 </style>

@@ -37,17 +37,18 @@ export default {
 	<div class="modal-backdrop" v-if="isVisible" style="opacity: 1;">
 		<div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
 			<header class="modal-header" id="modalTitle">
-				<button type="button" class="btn-close" @click="close" aria-label="Close">
+				<button type="button" class="btn-closed" @click="close">
+					<span>&times;</span>
 				</button>
 			</header>
 			<section class="modal-body" id="modalDescription">
 				<slot name="body">
 
 					<div class="modal-body__content">
-						<p v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
+						<div v-if="book.volumeInfo.title" class="cards__title font-weight-bold">{{
 							book.volumeInfo.title
 						}}
-						</p>
+						</div>
 						<p v-if="book.volumeInfo.authors"><span class="font-weight-bold">Автор</span>: {{
 							book.volumeInfo.authors[0]
 						}}
@@ -59,7 +60,7 @@ export default {
 						<p v-if="book.volumeInfo.publishedDate"><span class="font-weight-bold">Дата
 								публикации: </span> {{ book.volumeInfo.publishedDate.replace(/\-/g, '.') }}
 						</p>
-						<p v-if="book.volumeInfo.description">
+						<p class="modal-body__description" v-if="book.volumeInfo.description">
 							<span class="font-weight-bold">Описание: </span> {{
 								book.volumeInfo.description
 							}}
@@ -83,7 +84,7 @@ export default {
 								}}
 
 							</span>
-							<span v-else style="font-style:italic">Количество страниц неизвестно</span>
+							<span v-else class="not-found">Количество страниц неизвестно</span>
 						</p>
 					</div>
 				</slot>
@@ -94,24 +95,34 @@ export default {
 <style lang="scss" >
 .not-found {
 	font-style: italic;
+	color: #fff;
 }
 
 .modal {
-	border-radius: 0.375rem;
+	border-radius: 6px;
+	overflow: auto;
 
+	@media (max-width: 475px) {
+		overflow: scroll;
+		border-radius: 0 !important;
+		height: 100% !important;
+	}
 }
 
 .modal-body {
 
 	display: flex;
 	height: 100%;
-	padding-top: 0 !important;
+	padding: 0 30px 30px 30px !important;
 	color: #333131;
-	justify-content: center;
 
+	@media (max-width: 475px) {
+		height: auto;
+	}
 
 	@media (max-width:440px) {
 		flex-wrap: wrap;
+		padding: 0 20px 20px 20px !important;
 	}
 
 	p {
@@ -119,28 +130,37 @@ export default {
 		line-height: 1.7;
 	}
 
+	&__description {
+		margin-top: 15px;
+		line-height: 1.4 !important;
+	}
+
 	&__btn {
 		margin-top: 10px;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 10px;
+		gap: 20px;
+
+
 	}
 
 	&__image {
-		padding-left: 30px;
+		padding-left: 20px;
 		display: flex;
 		flex-direction: column;
-		gap: 5px;
+		gap: 10px;
 		text-align: center;
 
 		@media (max-width:440px) {
 			padding-left: 0;
+			margin: 0 auto;
 			order: 1;
 			padding-bottom: 10px;
 		}
 
 		img {
-			box-shadow: 0px 1px 5px #000;
+			filter: drop-shadow(-4px 4px 15px rgba(0, 0, 0, 0.4));
+			border-radius: 3px;
 			width: 100%;
 			min-width: 200px;
 			max-width: 300px;
@@ -160,8 +180,10 @@ export default {
 			order: 2;
 		}
 
-		flex: 0 1 60%;
+		flex: 1 1 auto;
 		font-size: 16px;
+		line-height: 14px;
+		color: #FFFFFF;
 		display: flex;
 		flex-direction: column;
 	}
@@ -169,12 +191,10 @@ export default {
 
 
 .cards__title {
-	font-size: 20px !important;
 	font-weight: 700;
-	line-height: 1.3;
-	color: #1d1c1c;
-	transition: color 0.3s ease 0s;
-
+	font-size: 20px;
+	line-height: 24px;
+	margin-bottom: 25px !important;
 }
 
 .font-weight-bold {
@@ -182,24 +202,28 @@ export default {
 }
 
 .btn-primary-modal {
-	font-size: 16px !important;
-	font-weight: 500;
-	padding: 8px !important;
+
+	font-weight: 700;
+	line-height: 22px;
+	text-align: center;
+	padding: 15px;
 	cursor: pointer;
-	background-color: #1d1c1c;
-	border-color: #1d1c1c;
-	transition: background-color 0.3s ease 0s;
+	width: 200px;
+	background: #F1A041;
+	border-radius: 6px;
+	border-color: transparent;
+	transition: background-color 0.2s ease 0s;
 	color: #fff;
-	width: 100%;
-	max-width: 200px;
 
 	&:hover,
+	&:focus,
 	&:active {
-		color: #fff;
-		background-color: #363535 !important;
-		border-color: #363535 !important;
+		background: #FA8F13 !important;
+		border-color: #FA8F13 !important;
 	}
 }
+
+
 
 .modal-backdrop {
 
@@ -209,23 +233,30 @@ export default {
 	top: 0;
 	bottom: 0;
 	overflow: auto;
+
+	@media (max-width: 475px) {
+		overflow: visible !important;
+	}
+
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.6);
+	background: rgba(5, 5, 5, 0.8);
+	backdrop-filter: blur(4px);
 }
 
 .modal-backdrop::-webkit-scrollbar {
 	width: 8px;
-	opacity: 0.6;
+	background: #313131;
+
 }
 
 .modal-backdrop::-webkit-scrollbar-track {
 	background: #313131;
-	opacity: 0.6;
+
 }
 
 .modal-backdrop::-webkit-scrollbar-thumb {
 	background-color: #7e7c7c;
-	opacity: 0.6;
+
 
 	&:hover {
 		background-color: #adabab;
@@ -235,27 +266,7 @@ export default {
 	border: 2px solid #313131;
 }
 
-.modal::-webkit-scrollbar {
-	width: 8px;
 
-}
-
-.modal::-webkit-scrollbar-track {
-	background: #fff;
-	margin-top: 10px;
-}
-
-.modal::-webkit-scrollbar-thumb {
-	background-color: #7e7c7c;
-	height: 50px;
-
-	&:hover {
-		background-color: #adabab;
-	}
-
-	border-radius: 20px;
-	border: 2px solid #fff;
-}
 
 html.open-modal {
 	position: fixed;
@@ -275,8 +286,11 @@ html.open-modal {
 	width: 100%;
 	max-width: 820px;
 	margin: 50px auto;
-	background: #FFFFFF;
-	max-height: 800px;
+	background: #282828;
+	border: 1px solid #3A3A3A;
+	box-shadow: 0px 0px 29px rgba(255, 255, 255, 0.1);
+	border-radius: 6px;
+	max-height: 968px;
 	height: auto;
 	display: flex;
 
@@ -293,7 +307,7 @@ html.open-modal {
 .modal-header {
 	border-bottom: 0px solid #eeeeee;
 
-	color: #000;
+	color: #9C4C4C !important;
 	justify-content: space-between;
 }
 
@@ -307,17 +321,36 @@ html.open-modal {
 	padding: 20px 10px;
 }
 
-.btn-close {
-	font-size: 20px;
-	margin: 3px !important;
+.btn-closed {
+	font-size: 35px;
+
+	span {
+		height: 20px !important;
+		display: flex;
+		align-items: center;
+	}
+
+	margin-top: 10px !important;
+	margin-right: 10px !important;
+	margin-bottom: 20px !important;
 	margin-left: auto !important;
+	color: #9C4C4C !important;
+	padding: 0 !important;
+	background: none !important;
+	border: none;
+
+	&:active {
+		color: #b66a6a !important;
+	}
 
 	&:focus,
 	&:active {
+
 		box-shadow: none;
 		outline: none;
 		border: none;
 	}
+
 
 }
 </style>

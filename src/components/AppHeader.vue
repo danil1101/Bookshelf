@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-	padding: 15px 0;
+	padding: 20px 0;
 	background-color: #171717;
 
 
@@ -38,17 +38,19 @@ export default {
 	}
 
 	&__logo {
-		font-size: 30px;
+		font-weight: 700;
+		font-size: 32px;
 	}
 
 	&__list {
-		font-size: 18px;
 		display: flex;
 		gap: 15px;
 	}
 
 	&__item {
 		cursor: pointer;
+		font-size: 20px;
+		font-weight: 300;
 	}
 }
 </style>

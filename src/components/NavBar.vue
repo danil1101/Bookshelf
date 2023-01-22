@@ -2,8 +2,8 @@
 	<nav class="navbar">
 		<form v-on:submit.prevent>
 			<div class="input-field">
-				<input :value="userInput" class="form-control" @input="valueChange" @keyup.enter="submitValue" type="search"
-					autocomplete="off">
+				<input :value="userInput" placeholder="Введите название книги, которую хотите найти" class="form-control"
+					@input="valueChange" @keyup.enter="submitValue" type="search" autocomplete="off">
 				<label class="label-icon" @click="submitValue" for="search"><i class="material-icons">search</i></label>
 				<!-- <i class="material-icons" @click="clearInput">close</i> -->
 			</div>
@@ -50,15 +50,10 @@ input[type="search"]::-webkit-search-results-decoration {
 	display: none;
 }
 
-.material-icons {
-	color: #fff !important;
-}
 
 .navbar {
-	justify-content: center;
 	padding: 0;
-	margin: 0 auto;
-	max-width: 500px;
+	max-width: 765px;
 }
 
 form {
@@ -71,11 +66,35 @@ nav input {
 
 }
 
+input[placeholder] {
+	font-size: 18px;
+	line-height: 18px;
+	color: #9A9A9A;
+}
+
+input::-moz-placeholder {
+	font-size: 18px;
+	line-height: 18px;
+	color: #9A9A9A;
+}
+
+input:-moz-placeholder {
+	font-size: 18px;
+	line-height: 18px;
+	color: #9A9A9A;
+}
+
+input:-ms-input-placeholder {
+	font-size: 18px;
+	line-height: 18px;
+	color: #9A9A9A;
+}
+
 .form-control {
 
 	&:focus {
-		box-shadow: 0 0 5px 0.1rem rgba(207, 198, 173, 0.6);
-		border-color: rgba(207, 198, 173, 0.6);
+		border: 1px solid #F3AD5A;
+		box-shadow: 0px 0px 20px rgba(243, 173, 90, 0.4);
 	}
 
 }
@@ -98,7 +117,7 @@ input {
 	margin-left: 5px;
 	align-items: center;
 	cursor: pointer;
-	color: #121212;
+	color: #494949;
 	right: 10px;
 	font-size: 32px;
 }
