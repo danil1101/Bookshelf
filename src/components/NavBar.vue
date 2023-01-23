@@ -5,7 +5,6 @@
 				<input :value="userInput" placeholder="Введите название книги, которую хотите найти" class="form-control"
 					@input="valueChange" @keyup.enter="submitValue" type="search" autocomplete="off">
 				<label class="label-icon" @click="submitValue" for="search"><i class="material-icons">search</i></label>
-				<!-- <i class="material-icons" @click="clearInput">close</i> -->
 			</div>
 		</form>
 	</nav>
@@ -70,11 +69,20 @@ input[placeholder] {
 	font-size: 18px;
 	line-height: 18px;
 	color: #9A9A9A;
+
+	@media (max-width:425px) {
+		font-size: 16px;
+	}
 }
 
 input::-moz-placeholder {
 	font-size: 18px;
 	line-height: 18px;
+
+	@media (max-width:425px) {
+		font-size: 16px;
+	}
+
 	color: #9A9A9A;
 }
 
@@ -82,12 +90,20 @@ input:-moz-placeholder {
 	font-size: 18px;
 	line-height: 18px;
 	color: #9A9A9A;
+
+	@media (max-width:425px) {
+		font-size: 16px;
+	}
 }
 
 input:-ms-input-placeholder {
 	font-size: 18px;
 	line-height: 18px;
 	color: #9A9A9A;
+
+	@media (max-width:425px) {
+		font-size: 16px;
+	}
 }
 
 .form-control {
@@ -119,6 +135,12 @@ input {
 	cursor: pointer;
 	color: #494949;
 	right: 10px;
-	font-size: 32px;
+	font-size: 32px !important;
+
+	@media (max-width:425px) {
+		font-size: 28px !important;
+		top: 10px;
+	}
+
 }
 </style>

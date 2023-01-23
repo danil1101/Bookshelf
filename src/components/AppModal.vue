@@ -61,11 +61,11 @@ export default {
 								публикации: </span> {{ book.volumeInfo.publishedDate.replace(/\-/g, '.') }}
 						</p>
 						<p class="modal-body__description" v-if="book.volumeInfo.description">
-							<span class="font-weight-bold">Описание: </span> {{
+							{{
 								book.volumeInfo.description
 							}}
 						</p>
-						<p style="flex: 1 1 auto;"></p>
+						<div style="flex: 1 1 auto;"></div>
 						<div class="modal-body__btn">
 							<a :href="book.accessInfo.webReaderLink" class="btn btn-primary-modal" target="_blank">Читать
 								книгу</a>
@@ -120,7 +120,7 @@ export default {
 		height: auto;
 	}
 
-	@media (max-width:440px) {
+	@media (max-width:768px) {
 		flex-wrap: wrap;
 		padding: 0 20px 20px 20px !important;
 	}
@@ -132,15 +132,23 @@ export default {
 
 	&__description {
 		margin-top: 15px;
+
+		@media (max-width: 435px) {
+			font-size: 14px !important;
+		}
+
 		line-height: 1.4 !important;
 	}
 
 	&__btn {
 		margin-top: 10px;
 		display: flex;
-		flex-wrap: wrap;
 		gap: 20px;
 
+		@media (max-width: 425px) {
+			margin-bottom: 60px;
+			gap: 10px;
+		}
 
 	}
 
@@ -151,7 +159,7 @@ export default {
 		gap: 10px;
 		text-align: center;
 
-		@media (max-width:440px) {
+		@media (max-width:768px) {
 			padding-left: 0;
 			margin: 0 auto;
 			order: 1;
@@ -166,6 +174,12 @@ export default {
 			max-width: 300px;
 
 			@media (max-width:768px) {
+
+				margin: 0 auto;
+
+			}
+
+			@media (max-width:768px) {
 				min-width: 150px;
 				max-width: 200px;
 			}
@@ -175,9 +189,16 @@ export default {
 	}
 
 	&__content {
-		@media (max-width:440px) {
+		@media (max-width:768px) {
 			flex: 1 1 auto;
 			order: 2;
+		}
+
+		@media (max-width: 425px) {
+			p {
+				font-size: 12px;
+			}
+
 		}
 
 		flex: 1 1 auto;
@@ -186,6 +207,7 @@ export default {
 		color: #FFFFFF;
 		display: flex;
 		flex-direction: column;
+
 	}
 }
 
@@ -206,7 +228,7 @@ export default {
 	font-weight: 700;
 	line-height: 22px;
 	text-align: center;
-	padding: 15px;
+	padding: 10px;
 	cursor: pointer;
 	width: 200px;
 	background: #F1A041;
@@ -214,6 +236,11 @@ export default {
 	border-color: transparent;
 	transition: background-color 0.2s ease 0s;
 	color: #fff;
+
+	@media (max-width: 425px) {
+		width: 50%;
+		padding: 8px;
+	}
 
 	&:hover,
 	&:focus,
@@ -322,10 +349,20 @@ html.open-modal {
 }
 
 .btn-closed {
-	font-size: 35px;
+	font-size: 40px;
+
+	@media (max-width: 425px) {
+		font-size: 55px;
+
+	}
 
 	span {
-		height: 20px !important;
+		@media (max-width: 425px) {
+			height: 35px !important;
+			margin-right: 5px;
+		}
+
+		height: 26px !important;
 		display: flex;
 		align-items: center;
 	}

@@ -3,10 +3,9 @@
 		<app-header></app-header>
 		<div class="container-lg cotainer-app">
 			<div class="main-image">
-				<img src="./assets/img/main-books.jpg" alt="">
+				<img src="./assets/img/main-books.webp" alt="">
 			</div>
 			<div class="search-page">
-
 				<nav-bar :userInput="input" @changedValue="input = $event" @submitValue="searchBooks"
 					@inputCleared="input = $event">
 				</nav-bar>
@@ -179,6 +178,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 body {
 	background-color: #121212;
 	min-height: 100vh;
@@ -196,13 +197,13 @@ main {
 }
 
 .main-image {
-
+	width: 100%;
 
 	img {
-		max-height: 227px;
-		display: block;
+		border-radius: 0px 0px 8px 5px;
+		max-height: 215px;
 		width: 100%;
-		height: 100vh;
+		height: 100%;
 		object-fit: cover;
 	}
 }
@@ -220,6 +221,12 @@ main {
 		color: #FFFFFF;
 	}
 
+	@media (max-width: 425px) {
+		font-size: 16px;
+		margin-top: 15px;
+
+	}
+
 	line-height: 18px;
 	margin-top: 30px;
 	margin-bottom: 16px;
@@ -230,6 +237,12 @@ main {
 	flex-direction: column;
 	overflow: hidden;
 	display: flex;
+}
+
+.container-lg {
+	@media (max-width:425px) {
+		padding: 0 8px;
+	}
 }
 
 .app {
@@ -248,8 +261,12 @@ main {
 		display: block;
 		bottom: 10px;
 		z-index: 1;
-		right: 0;
+		right: 150px;
 		background: url('./assets/img/main-book.png') 0 0 / cover no-repeat;
+
+		@media (max-width:1440px) {
+			right: 0;
+		}
 
 		@media (max-width:425px) {
 			width: 150px;
@@ -269,15 +286,21 @@ a {
 
 .search-page {
 	margin: 30px 0 100px 0;
-	min-width: 765px;
+
 
 	@media (max-width: 500px) {
 		min-width: 100%;
+		margin: 20px 0 50px 0;
 	}
 }
 
 .form-select {
 	width: auto;
+
+	@media (max-width: 425px) {
+
+		background-position: right 0.15rem center !important;
+	}
 }
 
 .selects__form {
@@ -285,14 +308,46 @@ a {
 	gap: 20px;
 	margin-bottom: 50px;
 
+	@media (max-width: 425px) {
+
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 530px) {
+		gap: 6px;
+
+		margin-bottom: 20px;
+	}
+
+	option {
+		padding: 3px;
+	}
+
 	select {
 		font-size: 16px;
 		line-height: 18px;
-		padding-top: 15px;
-		padding-bottom: 15px;
-		padding-left: 15px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 10px;
 		color: #454545;
-		min-width: 185px;
+		max-width: 185px;
+		width: 33.333% !important;
+
+		@media (max-width: 530px) {
+			font-size: 14px;
+		}
+
+		@media (max-width:425px) {
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 5px;
+			padding-right: 2px;
+			margin-right: -2px;
+			font-size: 12px;
+			width: 33.333% !important;
+
+			min-width: 94px !important;
+		}
 
 		@media (max-width:758px) {
 			min-width: 130px;
@@ -302,8 +357,12 @@ a {
 	}
 
 	select:focus {
-		box-shadow: 0 0 5px 0.1rem rgba(207, 198, 173, 0.6);
-		border-color: rgba(207, 198, 173, 0.6);
+		border: 1px solid #F3AD5A;
+		box-shadow: 0px 0px 20px rgba(243, 173, 90, 0.4);
+	}
+
+	@media (max-width: 425px) {
+		flex-wrap: nowrap !important;
 	}
 
 	@media (max-width: 430px) {
@@ -315,34 +374,38 @@ a {
 body::-webkit-scrollbar {
 	width: 8px;
 	background: #313131;
+
 }
 
 body::-webkit-scrollbar-track {
 	background: #313131;
 	margin-top: 5px;
+
 }
 
 body::-webkit-scrollbar-thumb {
 	background-color: #7e7c7c;
 
+
 	&:hover {
 		background-color: #adabab;
 	}
 
-	border-radius: 20px;
+	border-radius: 50px;
 	border: 2px solid #313131;
 }
 
 .count-pages {
 	margin-top: 60px;
 
+	@media (max-width: 425px) {
+		margin-top: 30px;
+	}
 }
 
 ul {
 	list-style: none;
 }
-
-body {}
 
 ul,
 li {
@@ -357,6 +420,12 @@ li {
 	}
 
 	&__item {
+		@media (max-width: 425px) {
+			width: 35px;
+			height: 35px;
+			font-size: 14px;
+		}
+
 		width: 50px;
 		height: 50px;
 		display: flex;
@@ -375,6 +444,11 @@ li {
 
 .item_all {
 	width: 75px;
+
+	@media (max-width: 425px) {
+		width: 55px;
+
+	}
 }
 
 .page_active {

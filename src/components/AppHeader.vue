@@ -40,6 +40,10 @@ export default {
 	&__logo {
 		font-weight: 700;
 		font-size: 32px;
+
+		@media (max-width:425px) {
+			font-size: 25px;
+		}
 	}
 
 	&__list {
@@ -50,6 +54,11 @@ export default {
 	&__item {
 		cursor: pointer;
 		font-size: 20px;
+
+		@media (max-width:425px) {
+			font-size: 16px;
+		}
+
 		font-weight: 300;
 	}
 }

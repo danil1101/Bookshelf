@@ -68,12 +68,26 @@ export default {
 	text-align: center;
 	padding: 8px;
 	cursor: pointer;
-	width: 200px;
+	width: 235px;
+
+	@media (min-width: 738px) and (max-width: 1000px) {
+		width: 100%;
+		max-width: 190px;
+	}
+
 	background: #F1A041;
 	border-radius: 6px;
 	border-color: transparent;
 	transition: background-color 0.2s ease 0s;
 	color: #fff;
+
+	@media (max-width: 425px) {
+		margin-top: 7px;
+		padding: 5px;
+		min-width: 80%;
+		max-width: 145px !important;
+
+	}
 
 	&:hover,
 	&:focus,
@@ -104,13 +118,16 @@ export default {
 	grid-gap: 30px;
 	margin: 0 auto;
 
+	@media (max-width: 425px) {
+		grid-gap: 10px;
+	}
+
 	&__item {
 		flex: 0 1 33.333%;
 		flex-direction: row;
 
-		@media (max-width: 430px) {
-			flex-wrap: wrap;
-			padding: 20px;
+		@media (max-width: 1000px) {
+			padding: 15px;
 		}
 
 		display: flex;
@@ -122,13 +139,13 @@ export default {
 	&__image {
 
 		max-width: 140px;
-		max-width: 165px;
+		max-height: 165px;
 		min-width: 120px;
 		height: auto;
 
-		@media (max-width: 430px) {
-			padding-bottom: 10px;
-			margin: 0 auto;
+		@media (max-width: 425px) {
+			min-width: 95px;
+			max-width: 95px;
 		}
 
 		img {
@@ -142,15 +159,28 @@ export default {
 	&__content {
 
 		@media (max-width: 430px) {
-			min-width: 100%;
 			padding: 0;
-			margin: 0 auto;
+
+		}
+
+		@media (max-width: 738px) {
+			padding: 0 10px;
+
+		}
+
+		@media (min-width: 738px) and (max-width: 1000px) {
+			padding: 0 10px;
 		}
 
 		position: relative;
 		padding: 0 20px;
 		color: #fff;
 		font-size: 14px;
+
+
+		@media (max-width: 425px) {
+			font-size: 12px;
+		}
 
 		display: flex;
 		flex-direction: column;
@@ -161,6 +191,10 @@ export default {
 
 		p:not(:last-child) {
 			margin-bottom: 10px;
+
+			@media (max-width: 425px) {
+				margin-bottom: 5px;
+			}
 		}
 	}
 
@@ -176,10 +210,17 @@ export default {
 
 .cards__title {
 	font-weight: 700;
+
+	@media (max-width: 425px) {
+		font-size: 16px;
+		margin-bottom: 10px !important;
+	}
+
 	font-size: 20px;
 	line-height: 24px;
 	color: #fff;
 	margin-bottom: 15px;
+	transition: color 0.2s ease 0s;
 
 	&:hover {
 		color: rgb(224, 224, 224);
