@@ -2,8 +2,9 @@
 	<nav class="navbar">
 		<form v-on:submit.prevent>
 			<div class="input-field">
-				<input :value="userInput" placeholder="Введите название книги, которую хотите найти" class="form-control"
-					@input="valueChange" @keyup.enter="submitValue" type="search" autocomplete="off">
+				<input autofocus tabindex=0 :value="userInput" name="input"
+					placeholder="Введите название произведения или автора" class="form-control" @input="valueChange"
+					@keyup.enter="submitValue" type="search" autocomplete="off">
 				<label class="label-icon" @click="submitValue" for="search"><i class="material-icons">search</i></label>
 			</div>
 		</form>
@@ -17,6 +18,14 @@ export default {
 	data: function () {
 		return {
 			input: ''
+		}
+	},
+	mounted() {
+		if (document.documentElement.clientWidth < 426) {
+			document.documentElement.classList.add('mobile')
+			document.getElementsByName('input')[0].placeholder = 'Введите название книги';
+		} else {
+			document.documentElement.classList.remove('mobile')
 		}
 	},
 	methods: {
@@ -55,14 +64,17 @@ input[type="search"]::-webkit-search-results-decoration {
 	max-width: 765px;
 }
 
+.input-field {
+	display: flex;
+	position: relative;
+}
+
 form {
 	width: 100%;
 }
 
 nav input {
 	color: #000;
-
-
 }
 
 input[placeholder] {
@@ -118,10 +130,7 @@ input {
 
 }
 
-.input-field {
-	display: flex;
-	position: relative;
-}
+
 
 .material-icons {
 	position: absolute;

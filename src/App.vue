@@ -250,14 +250,16 @@ main {
 
 .cotainer-app {
 	flex-direction: column;
-	overflow: hidden;
 	display: flex;
+
 }
 
 .container-lg {
 	@media (max-width:425px) {
 		padding: 0 8px;
 	}
+
+
 }
 
 .app {
@@ -270,13 +272,13 @@ main {
 
 	&::after {
 		content: '';
-		width: 250px;
-		height: 250px;
+		width: 230px;
+		height: 230px;
 		position: absolute;
 		display: block;
 		bottom: 10px;
 		z-index: 1;
-		right: 150px;
+		right: 120px;
 		background: url('./assets/img/main-book.png') 0 0 / cover no-repeat;
 
 		@media (max-width:1440px) {
