@@ -197,7 +197,7 @@ main {
 
 .main-image {
 
-	border-radius: 0px 0px 8px 5px;
+	border-radius: 0px 0px 5px 5px;
 
 	@media (max-width: 425px) {
 		background: url('./assets/img/main-books_mobile.webp') 0 0 / cover no-repeat, url('./assets/img/main-books_mobile.jpg') 0 0 / cover no-repeat, ;
