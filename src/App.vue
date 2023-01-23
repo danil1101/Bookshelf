@@ -200,13 +200,12 @@ main {
 	border-radius: 0px 0px 5px 5px;
 
 	@media (max-width: 425px) {
-		background: url('./assets/img/main-books_mobile.webp') 0 0 / cover no-repeat, url('./assets/img/main-books_mobile.jpg') 0 0 / cover no-repeat, ;
+		background: url('./assets/img/main-books_mobile.webp') 0 0 / cover no-repeat;
 		padding-bottom: 80px;
 	}
 
-	padding-bottom: 215px;
-	background: url('./assets/img/main-books.webp') 0 0 / cover no-repeat,
-	url('./assets/img/main-books.jpg') 0 0 / cover no-repeat;
+	padding-bottom: 197px;
+	background: url('./assets/img/main-books.webp') 0 0 / cover no-repeat;
 
 }
 
