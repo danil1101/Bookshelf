@@ -67,7 +67,6 @@ nav input {
 
 input[placeholder] {
 	font-size: 18px;
-	line-height: 18px;
 	color: #9A9A9A;
 
 	@media (max-width:425px) {
@@ -77,7 +76,6 @@ input[placeholder] {
 
 input::-moz-placeholder {
 	font-size: 18px;
-	line-height: 18px;
 
 	@media (max-width:425px) {
 		font-size: 16px;
@@ -88,7 +86,6 @@ input::-moz-placeholder {
 
 input:-moz-placeholder {
 	font-size: 18px;
-	line-height: 18px;
 	color: #9A9A9A;
 
 	@media (max-width:425px) {
@@ -98,7 +95,6 @@ input:-moz-placeholder {
 
 input:-ms-input-placeholder {
 	font-size: 18px;
-	line-height: 18px;
 	color: #9A9A9A;
 
 	@media (max-width:425px) {
