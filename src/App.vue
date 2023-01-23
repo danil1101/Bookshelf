@@ -3,7 +3,6 @@
 		<app-header></app-header>
 		<div class="container-lg cotainer-app">
 			<div class="main-image">
-				<img src="./assets/img/main-books.webp" alt="">
 			</div>
 			<div class="search-page">
 				<nav-bar :userInput="input" @changedValue="input = $event" @submitValue="searchBooks"
@@ -197,15 +196,18 @@ main {
 }
 
 .main-image {
-	width: 100%;
 
-	img {
-		border-radius: 0px 0px 8px 5px;
-		max-height: 215px;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+	border-radius: 0px 0px 8px 5px;
+
+	@media (max-width: 425px) {
+		background: url('./assets/img/main-books_mobile.webp') 0 0 / cover no-repeat, url('./assets/img/main-books_mobile.jpg') 0 0 / cover no-repeat, ;
+		padding-bottom: 80px;
 	}
+
+	padding-bottom: 215px;
+	background: url('./assets/img/main-books.webp') 0 0 / cover no-repeat,
+	url('./assets/img/main-books.jpg') 0 0 / cover no-repeat;
+
 }
 
 .book__more {
