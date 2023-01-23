@@ -197,14 +197,28 @@ main {
 
 .main-image {
 
-	border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 8px 8px;
+
+
+
+	@media (max-width:1400px) {
+		padding-bottom: 216px;
+	}
+
+	@media (max-width:1200px) {
+		padding-bottom: 182px;
+	}
+
+	@media (max-width:936px) {
+		padding-bottom: 19.402%;
+	}
 
 	@media (max-width: 425px) {
 		background: url('./assets/img/main-books_mobile.webp') 0 0 / cover no-repeat;
-		padding-bottom: 80px;
+		padding-bottom: 26.298%;
 	}
 
-	padding-bottom: 197px;
+	padding-bottom: 252px;
 	background: url('./assets/img/main-books.webp') 0 0 / cover no-repeat;
 
 }
