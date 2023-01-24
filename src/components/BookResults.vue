@@ -42,7 +42,7 @@ export default {
 			isModalVisible: false,
 		}
 	},
-	beforeRouteEnter() {
+	mounted() {
 		document.documentElement.classList.remove('open-modal')
 	},
 	methods: {
@@ -138,13 +138,11 @@ export default {
 
 	&__image {
 
-		max-width: 140px;
-		max-height: 165px;
-		min-width: 120px;
-		height: auto;
+		max-width: 145px;
+		width: 100%;
 
 		@media (max-width: 425px) {
-			min-width: 95px;
+
 			max-width: 95px;
 		}
 

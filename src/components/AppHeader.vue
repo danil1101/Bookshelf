@@ -5,7 +5,7 @@
 			<div class="header__row">
 				<a href="https://danil1101.github.io/BookSearch/" class="header__logo">
 					<img class="header__logo" src="../assets/img/audiobooks.png" alt="">
-					<div>Books Search</div>
+					<div>Bookshelf</div>
 				</a>
 
 				<div class="header__list">
@@ -55,7 +55,7 @@ export default {
 		}
 
 		@media (max-width:425px) {
-			font-size: 25px;
+			font-size: 22px;
 		}
 	}
 
@@ -69,7 +69,7 @@ export default {
 		font-size: 20px;
 
 		@media (max-width:425px) {
-			font-size: 16px;
+			font-size: 18px;
 		}
 
 		font-weight: 300;

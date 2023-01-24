@@ -125,6 +125,10 @@ export default {
 		padding: 0 20px 20px 20px !important;
 	}
 
+	@media (max-width: 425px) {
+		padding: 0 10px 10px 10px !important;
+	}
+
 	p {
 		margin-bottom: 7px;
 		line-height: 1.7;
@@ -134,10 +138,10 @@ export default {
 		margin-top: 15px;
 
 		@media (max-width: 435px) {
-			font-size: 14px !important;
+			font-size: 16px !important;
 		}
 
-		line-height: 1.4 !important;
+		line-height: 1.6 !important;
 	}
 
 	&__btn {
@@ -196,7 +200,7 @@ export default {
 
 		@media (max-width: 425px) {
 			p {
-				font-size: 12px;
+				font-size: 14px;
 			}
 
 		}
@@ -214,6 +218,12 @@ export default {
 
 .cards__title {
 	font-weight: 700;
+
+	@media (max-width: 425px) {
+		font-size: 22px !important;
+		line-height: 40px;
+	}
+
 	font-size: 20px;
 	line-height: 24px;
 	margin-bottom: 25px !important;
@@ -352,13 +362,13 @@ html.open-modal {
 	font-size: 40px;
 
 	@media (max-width: 425px) {
-		font-size: 55px;
+		font-size: 45px;
 
 	}
 
 	span {
 		@media (max-width: 425px) {
-			height: 35px !important;
+			height: 30px !important;
 			margin-right: 5px;
 		}
 
@@ -369,7 +379,7 @@ html.open-modal {
 
 	margin-top: 10px !important;
 	margin-right: 10px !important;
-	margin-bottom: 20px !important;
+	margin-bottom: 15px !important;
 	margin-left: auto !important;
 	color: #9C4C4C !important;
 	padding: 0 !important;
