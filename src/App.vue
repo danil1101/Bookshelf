@@ -68,6 +68,7 @@
 import NavBar from '@/components/NavBar'
 import BookResults from '@/components/BookResults'
 import AppHeader from '@/components/AppHeader.vue'
+import './assets/font/font.css'
 export default {
 	components: {
 		AppHeader, NavBar, BookResults
@@ -202,13 +203,13 @@ body {
 	background-color: #121212;
 	min-height: 100vh;
 	overflow-y: auto;
-
+	font-family: 'Inter', sans-serif !important;
 	font-weight: 400;
 }
 
 html {
 	background-color: #121212;
-	font-family: 'Inter', sans-serif;
+
 }
 
 main {
