@@ -7,7 +7,6 @@
 					<img class="header__logo" src="../assets/img/audiobooks.png" alt="">
 					<div>Bookshelf</div>
 				</a>
-
 				<div class="header__list">
 					<a href="https://github.com/danil1101/BookSearch" target="_blank" class="header__item">GitHub</a>
 				</div>

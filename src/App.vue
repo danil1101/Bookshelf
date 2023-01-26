@@ -202,12 +202,13 @@ body {
 	background-color: #121212;
 	min-height: 100vh;
 	overflow-y: auto;
-	font-family: Inter, sans-serif;
+
 	font-weight: 400;
 }
 
 html {
 	background-color: #121212;
+	font-family: 'Inter', sans-serif;
 }
 
 main {
