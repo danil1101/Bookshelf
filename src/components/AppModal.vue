@@ -7,14 +7,19 @@ export default {
 			isVisible: false,
 		}
 	},
+
 	methods: {
 		show() {
-			this.isVisible = true
+			this.isVisible = true;
+			this.$nextTick(() => {
+				this.$refs.modal.focus();
+			});
 		},
 		close() {
 			this.$emit('close')
 			this.isVisible = false
 		},
+
 		getNoun(number, one, two, five) {
 			let n = Math.abs(number);
 			n %= 100;
@@ -34,7 +39,7 @@ export default {
 };
 </script>
 <template>
-	<div class="modal-backdrop" v-if="isVisible" style="opacity: 1;">
+	<div class="modal-backdrop" v-if="isVisible" ref="modal" tabindex="0" @keyup.esc="close" style="opacity: 1;">
 		<div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
 			<header class="modal-header" id="modalTitle">
 				<button type="button" class="btn-closed" @click="close">

@@ -99,24 +99,6 @@ export default {
 		}
 	},
 	methods: {
-		start() {
-			this.$Progress.start()
-		},
-		set(num) {
-			this.$Progress.set(num)
-		},
-		increase(num) {
-			this.$Progress.increase(num)
-		},
-		decrease(num) {
-			this.$Progress.decrease(num)
-		},
-		finish() {
-			this.$Progress.finish()
-		},
-		fail() {
-			this.$Progress.fail()
-		},
 		isClassPageActive() {
 			const activePages = document.querySelectorAll('.page_active')
 			if (activePages) {
@@ -180,11 +162,9 @@ export default {
 					let instances = M.Carousel.init(elems);
 					this.loading = false
 					this.results = true
-					this.$Progress.finish()
 				})
 				.catch((error) => {
 					this.loading = false
-					this.$Progress.fail()
 					console.log(error);
 					M.toast({
 						html: 'Oops! Something went wrong!'

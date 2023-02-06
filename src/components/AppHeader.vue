@@ -3,12 +3,12 @@
 	<div class="header">
 		<div class="container-lg">
 			<div class="header__row">
-				<a href="https://danil1101.github.io/BookSearch/" class="header__logo">
+				<a href="https://danil1101.github.io/Bookshelf/" class="header__logo">
 					<img class="header__logo" src="../assets/img/audiobooks.png" alt="">
 					<div>Bookshelf</div>
 				</a>
 				<div class="header__list">
-					<a href="https://github.com/danil1101/BookSearch" target="_blank" class="header__item">GitHub</a>
+					<a href="https://github.com/danil1101/Bookshelf" target="_blank" class="header__item">GitHub</a>
 				</div>
 			</div>
 		</div>
