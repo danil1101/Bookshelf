@@ -25,7 +25,6 @@
 						<option value="relevance" disabled hidden selected>Сортировка</option>
 						<option value="relevance">По релевантности</option>
 						<option value="newest">От новых к старым</option>
-						<!-- В следующем примере результаты перечислены по дате публикации, от новых к старым: -->
 					</select>
 					<select v-if="books.length" class="form-select" v-model="selectedFilter" name="filter"
 						@change="updateFilter">
@@ -83,7 +82,7 @@ export default {
 			title: '',
 			inputSearch: '',
 			textMore: false,
-			countPage: '0',
+			countPage: 0,
 			selectedItem: 'all',
 			selectedFilter: 'partial',
 			selectedSort: 'relevance',
@@ -100,6 +99,7 @@ export default {
 	},
 	methods: {
 		isClassPageActive() {
+			console.log(this.$refs.page_active);
 			const activePages = document.querySelectorAll('.page_active')
 			if (activePages) {
 				for (let activePage of activePages) {
@@ -151,8 +151,7 @@ export default {
 		searchBooks(event) {
 			this.loading = true
 			let search = this.input;
-			let queryURL = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40&startIndex=${this.countPage}&filter=${this.selectedFilter}&printType=${this.selectedItem}&orderBy=${this.selectedSort}`;
-			console.log(queryURL)
+			let queryURL = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40&startIndex=${this.countPage.toString()}&filter=${this.selectedFilter}&printType=${this.selectedItem}&orderBy=${this.selectedSort}`;
 			this.$http.get(queryURL).then((data) => {
 				this.books = data.body.items;
 				this.inputSearch = this.input;
@@ -189,7 +188,6 @@ body {
 
 html {
 	background-color: #121212;
-
 }
 
 main {
@@ -197,10 +195,7 @@ main {
 }
 
 .main-image {
-
 	border-radius: 0px 0px 8px 8px;
-
-
 
 	@media (max-width:1400px) {
 		padding-bottom: 216px;
@@ -221,7 +216,6 @@ main {
 
 	padding-bottom: 252px;
 	background: url('./assets/img/main-books.webp') 0 0 / cover no-repeat;
-
 }
 
 .book__more {
@@ -240,7 +234,6 @@ main {
 	@media (max-width: 425px) {
 		font-size: 16px;
 		margin-top: 15px;
-
 	}
 
 	line-height: 18px;
@@ -252,24 +245,19 @@ main {
 .cotainer-app {
 	flex-direction: column;
 	display: flex;
-
 }
 
 .container-lg {
 	@media (max-width:425px) {
 		padding: 0 8px;
 	}
-
-
 }
 
 .app {
-
 	background-color: #121212;
 	min-height: 100vh;
 	position: relative;
 	color: #fff;
-
 
 	&::after {
 		content: '';

@@ -2,7 +2,7 @@
 	<nav class="navbar">
 		<form v-on:submit.prevent>
 			<div class="input-field">
-				<input autofocus tabindex=0 :value="userInput" name="input"
+				<input autofocus tabindex=0 :value="userInput" ref="input" name="input"
 					placeholder="Введите название произведения или автора" class="form-control" @input="valueChange"
 					@keyup.enter="submitValue" type="search" autocomplete="off">
 				<label class="label-icon" @click="submitValue" for="search"><i class="material-icons">search</i></label>
@@ -23,7 +23,7 @@ export default {
 	mounted() {
 		if (document.documentElement.clientWidth < 426) {
 			document.documentElement.classList.add('mobile')
-			document.getElementsByName('input')[0].placeholder = 'Введите название книги';
+			this.$refs.input.placeholder = 'Введите название книги';
 		} else {
 			document.documentElement.classList.remove('mobile')
 		}
