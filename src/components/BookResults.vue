@@ -70,9 +70,14 @@ export default {
 	cursor: pointer;
 	width: 235px;
 
-	@media (min-width: 738px) and (max-width: 1000px) {
-		width: 100%;
-		max-width: 190px;
+	@media (min-width: 838px) and (max-width: 1000px) {
+
+		width: 190px !important;
+	}
+
+	@media (min-width: 738px) and (max-width: 838px) {
+
+		width: 150px !important;
 	}
 
 	background: #F1A041;
@@ -137,7 +142,7 @@ export default {
 	}
 
 	&__image {
-
+		padding-right: 5px;
 		max-width: 145px;
 		width: 100%;
 
