@@ -59,7 +59,13 @@
 				</div>
 			</div>
 			<main></main>
+			<div class="scroll-to-top" @click="scrollToTop" v-if="books.length">
+				<svg class="arrow-top-3" viewBox="0 0 5 9">
+					<path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" />
+				</svg>
+			</div>
 		</div>
+
 	</div>
 </template>
 
@@ -98,6 +104,12 @@ export default {
 		}
 	},
 	methods: {
+		scrollToTop() {
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth"
+			});
+		},
 		isClassPageActive() {
 			console.log(this.$refs.page_active);
 			const activePages = document.querySelectorAll('.page_active')
@@ -461,5 +473,40 @@ li {
 	border: 1px solid #F1A041;
 	background: none !important;
 	border-radius: 6px;
+}
+
+.scroll-to-top {
+	z-index: 100;
+	position: fixed;
+	bottom: 20px;
+	right: 40px;
+
+	@media (max-width: 425px) {
+		bottom: 10px;
+		right: 15px;
+	}
+
+	cursor: pointer;
+}
+
+.arrow-top-3 {
+	margin: 20px 8px;
+	width: 30px;
+	height: 30px;
+
+	cursor: pointer;
+}
+
+.arrow-top-3 path {
+	fill: #fff;
+	transition: fill 0.5s ease-out;
+}
+
+.arrow-top-3 {
+	transform: rotate(270deg);
+}
+
+.arrow-top-3:hover path {
+	fill: #b6b6b6;
 }
 </style>

@@ -4,8 +4,15 @@
 			<div class="input-field">
 				<input autofocus tabindex=0 :value="userInput" ref="input" name="input"
 					placeholder="Введите название произведения или автора" class="form-control" @input="valueChange"
-					@keyup.enter="submitValue" type="search" autocomplete="off">
-				<label class="label-icon" @click="submitValue" for="search"><i class="material-icons">search</i></label>
+					@keyup.enter="submitValue" type="search" :class="{ active: input }" autocomplete="off">
+				<label class="label-icon" @click="submitValue" for="search">
+					<div class="material-icons"><svg width="800px" height="800px" viewBox="0 0 24 24" fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M9.5 17c1.71 0 3.287-.573 4.55-1.537l4.743 4.744a1 1 0 0 0 1.414-1.414l-4.744-4.744A7.5 7.5 0 1 0 9.5 17zM15 9.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+								fill="#000000" />
+						</svg></div>
+				</label>
 			</div>
 		</form>
 	</nav>
@@ -58,6 +65,16 @@ input[type="search"]::-webkit-search-results-decoration {
 	display: none;
 }
 
+.material-icons svg {
+	position: relative;
+	display: block;
+	top: 1px;
+	left: 3px;
+	width: 30px;
+	height: 30px;
+
+
+}
 
 .navbar {
 	padding: 0;
@@ -112,6 +129,10 @@ input:-ms-input-placeholder {
 	@media (max-width:425px) {
 		font-size: 16px;
 	}
+}
+
+.active {
+	border: 1px solid #F3AD5A;
 }
 
 .form-control {
